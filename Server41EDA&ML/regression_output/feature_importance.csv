@@ -1,0 +1,11 @@
+feature,importance_mean,importance_std
+block,108.831621,1.141191
+day_of_year,90.609206,1.3412
+day_of_week,22.910566,0.285927
+hour,5.514855,0.333848
+month,2.78862,0.127145
+year,0.0,0.0
+quarter,0.0,0.0
+minute,-0.00458,0.000718
+is_weekend,-0.006452,0.0324
+day,-2.920283,0.309784

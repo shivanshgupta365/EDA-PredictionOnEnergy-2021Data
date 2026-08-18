@@ -1,0 +1,11 @@
+feature,mutual_information
+day_of_year,0.318383
+block,0.271213
+hour,0.262801
+month,0.191901
+quarter,0.121619
+year,0.098819
+day_of_week,0.027582
+is_weekend,0.01814
+day,0.0148
+minute,0.0
