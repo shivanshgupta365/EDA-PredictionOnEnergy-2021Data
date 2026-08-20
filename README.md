@@ -105,6 +105,17 @@ The Streamlit dashboard contains:
 
 The dashboard is designed so the analysis can be explained visually instead of only through raw code and CSV files.
 
+## Work Done Process
+
+The work started with loading and understanding the dataset. Then data quality checks were performed to confirm null values, duplicate rows, duplicate timestamps, timestamp continuity, interval consistency, and demand validity.
+
+After that, EDA was done using descriptive statistics, distribution plots, boxplots, trend charts, and grouped demand analysis. Bivariate analysis checked one variable at a time against demand, while multivariate analysis checked how multiple variables work together.
+
+Prediction work was done in two ways. First, demand was classified into low, medium, and high categories. Then regression was used to predict actual demand values. Finally, lag features were added to check whether previous demand values improve forecasting. The lag-feature model performed best, confirming that recent demand history is the most important signal.
+
+The final result is a complete EDA and prediction workflow with notebook outputs, generated reports, model results, and a Streamlit dashboard.
+
+
 ## Project Files
 
 Important files:
