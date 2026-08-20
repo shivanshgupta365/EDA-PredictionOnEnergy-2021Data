@@ -91,6 +91,20 @@ Lag-feature analysis gave the strongest result. Previous demand values, especial
 
 This shows that recent demand history is the strongest signal for forecasting.
 
+## Dashboard Sections
+
+The Streamlit dashboard contains:
+
+- EDA Notebook
+- Overview
+- Data Quality
+- Patterns
+- Models
+- Lag Forecasting
+- Work Done Process
+
+The dashboard is designed so the analysis can be explained visually instead of only through raw code and CSV files.
+
 ## Project Files
 
 Important files:
