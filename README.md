@@ -141,3 +141,19 @@ Output folders:
 - `classification_output/`
 - `regression_output/`
 - `lag_feature_analysis_output/`
+
+## Deploying the Dashboard
+
+This repository contains two dashboard entry points:
+
+- **Vercel:** deploy the repository root. Vercel serves the static, interactive
+  dashboard at `/` using the generated CSV and JSON analysis outputs. It does
+  not run `streamlit_app.py`.
+- **Streamlit:** run the Python dashboard on a platform that supports a
+  persistent Python web process, such as Streamlit Community Cloud:
+  `streamlit run "Server41EDA&ML/streamlit_app.py"`.
+
+The root `vercel.json` is intentional: the visual dashboard and its data files
+live in `Server41EDA&ML/`, while the GitHub repository root is one level above.
+It rewrites `/` and each dashboard asset request to that directory so a Vercel
+deployment made from the repository root works correctly.

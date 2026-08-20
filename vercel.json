@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/Server41EDA&ML/index.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/Server41EDA&ML/$1"
+    }
+  ]
+}
