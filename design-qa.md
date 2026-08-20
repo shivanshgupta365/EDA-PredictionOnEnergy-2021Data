@@ -14,6 +14,7 @@
 1. The initial static deployment had a sparse card grid and omitted the Streamlit workspace hierarchy. It was replaced with a persistent dark sidebar, mirrored section tabs, EDA notebook structure, source preview table, KPI strip, charts, model scorecards, and report workflow.
 2. The initial hidden-tab chart rendering produced blank Plotly panels. Active views are now measurable at boot, and feature-importance views use resilient ranked bars while preserving chart-level explanations.
 3. The final capture shows the Streamlit reference's core content model—left navigation, notebook heading, KPI row, data/schema tables, and analytical charts—at higher contrast and a more legible public-web scale.
+4. The Patterns view now renders its previously missing Day of Week, Indian Season, and Season × Demand analyses. The correlation chart uses a signed zero-centered rendering so it remains visible even when a chart library cannot determine a hidden panel's dimensions.
 
 ## Required fidelity surfaces
 
@@ -28,6 +29,7 @@
 - Sidebar and horizontal tab navigation switch views.
 - Plotly graphs provide point-level hover values.
 - The custom Data Lens hover system was verified on the Data Preview header: it displays a contextual explanation; metric cards, headers, chart regions, and table cells receive contextual help.
+- The bottom-left Data Lens tab and its persisted on/off control were verified in a real browser. With the control off, no hover panel appears; with it on, the contextual panel appears again.
 - Browser console checked after the final model view: no errors.
 
 ## Focused-region comparison
