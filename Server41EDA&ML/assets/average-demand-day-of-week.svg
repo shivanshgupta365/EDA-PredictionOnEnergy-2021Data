@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Average demand by day of week</title>
+  <desc id="desc">Bar chart of average demand: Monday 1370.1, Tuesday 1380.5, Wednesday 1383.7, Thursday 1382.5, Friday 1382.7, Saturday 1340.9, Sunday 1228.3.</desc>
+  <rect width="1200" height="620" fill="#fffefb"/>
+  <g stroke="#e4e5e0" stroke-width="2"><line x1="100" y1="510" x2="1150" y2="510"/><line x1="100" y1="408" x2="1150" y2="408"/><line x1="100" y1="306" x2="1150" y2="306"/><line x1="100" y1="204" x2="1150" y2="204"/><line x1="100" y1="102" x2="1150" y2="102"/><line x1="100" y1="0" x2="1150" y2="0"/></g>
+  <g fill="#68736e" font-family="Arial, sans-serif" font-size="22" text-anchor="end"><text x="88" y="517">0</text><text x="88" y="415">400</text><text x="88" y="313">800</text><text x="88" y="211">1200</text><text x="88" y="109">1600</text></g>
+  <g fill="#1767b3"><rect x="125" y="161" width="105" height="349" rx="2"/><rect x="270" y="158" width="105" height="352" rx="2"/><rect x="415" y="157" width="105" height="353" rx="2"/><rect x="560" y="158" width="105" height="352" rx="2"/><rect x="705" y="157" width="105" height="353" rx="2"/><rect x="850" y="168" width="105" height="342" rx="2"/><rect x="995" y="197" width="105" height="313" rx="2"/></g>
+  <g fill="#11201d" font-family="Arial, sans-serif" font-size="19" text-anchor="middle"><text x="177" y="545">Monday</text><text x="322" y="545">Tuesday</text><text x="467" y="545">Wednesday</text><text x="612" y="545">Thursday</text><text x="757" y="545">Friday</text><text x="902" y="545">Saturday</text><text x="1047" y="545">Sunday</text></g>
+  <g fill="#1767b3" font-family="Arial, sans-serif" font-size="18" font-weight="700" text-anchor="middle"><text x="177" y="148">1370.1</text><text x="322" y="145">1380.5</text><text x="467" y="144">1383.7</text><text x="612" y="145">1382.5</text><text x="757" y="144">1382.7</text><text x="902" y="155">1340.9</text><text x="1047" y="184">1228.3</text></g>
+  <text x="625" y="595" fill="#11201d" font-family="Arial, sans-serif" font-size="21" text-anchor="middle">Day of week</text>
+  <text x="29" y="275" fill="#11201d" font-family="Arial, sans-serif" font-size="21" text-anchor="middle" transform="rotate(-90 29 275)">Average demand</text>
+</svg>
