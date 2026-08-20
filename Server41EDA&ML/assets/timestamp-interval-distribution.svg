@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Timestamp interval distribution</title>
+  <desc id="desc">A bar chart showing 173303 consecutive intervals of exactly 15 minutes.</desc>
+  <rect width="1200" height="620" fill="#fffefb"/>
+  <g stroke="#e4e5e0" stroke-width="2"><line x1="120" y1="510" x2="1130" y2="510"/><line x1="120" y1="382" x2="1130" y2="382"/><line x1="120" y1="255" x2="1130" y2="255"/><line x1="120" y1="128" x2="1130" y2="128"/><line x1="120" y1="0" x2="1130" y2="0"/></g>
+  <g fill="#68736e" font-family="Arial, sans-serif" font-size="22" text-anchor="end"><text x="108" y="517">0</text><text x="108" y="389">50k</text><text x="108" y="262">100k</text><text x="108" y="135">150k</text></g>
+  <rect x="420" y="69" width="410" height="441" rx="3" fill="#087968"/>
+  <text x="625" y="56" fill="#087968" font-family="Arial, sans-serif" font-size="22" font-weight="700" text-anchor="middle">173,303</text>
+  <text x="625" y="550" fill="#11201d" font-family="Arial, sans-serif" font-size="24" text-anchor="middle">15 minutes</text>
+  <text x="625" y="595" fill="#11201d" font-family="Arial, sans-serif" font-size="21" text-anchor="middle">Observed interval</text>
+  <text x="36" y="275" fill="#11201d" font-family="Arial, sans-serif" font-size="21" text-anchor="middle" transform="rotate(-90 36 275)">Count</text>
+</svg>
