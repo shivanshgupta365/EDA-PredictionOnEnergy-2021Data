@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="620" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Average demand by Indian season</title>
+  <desc id="desc">Bar chart of average demand by season: Winter 1138.8, Summer 1482.1, Monsoon 1352.6, Post-Monsoon 1395.5.</desc>
+  <rect width="1200" height="620" fill="#fffefb"/>
+  <g stroke="#e4e5e0" stroke-width="2"><line x1="100" y1="510" x2="1150" y2="510"/><line x1="100" y1="408" x2="1150" y2="408"/><line x1="100" y1="306" x2="1150" y2="306"/><line x1="100" y1="204" x2="1150" y2="204"/><line x1="100" y1="102" x2="1150" y2="102"/><line x1="100" y1="0" x2="1150" y2="0"/></g>
+  <g fill="#68736e" font-family="Arial, sans-serif" font-size="22" text-anchor="end"><text x="88" y="517">0</text><text x="88" y="415">400</text><text x="88" y="313">800</text><text x="88" y="211">1200</text><text x="88" y="109">1600</text></g>
+  <g><rect x="160" y="220" width="170" height="290" rx="2" fill="#1767b3"/><rect x="410" y="132" width="170" height="378" rx="2" fill="#d34e41"/><rect x="660" y="165" width="170" height="345" rx="2" fill="#087968"/><rect x="910" y="154" width="170" height="356" rx="2" fill="#d18a25"/></g>
+  <g fill="#11201d" font-family="Arial, sans-serif" font-size="20" text-anchor="middle"><text x="245" y="545">Winter</text><text x="495" y="545">Summer</text><text x="745" y="545">Monsoon</text><text x="995" y="545">Post-Monsoon</text></g>
+  <g font-family="Arial, sans-serif" font-size="18" font-weight="700" text-anchor="middle"><text x="245" y="207" fill="#1767b3">1138.8</text><text x="495" y="119" fill="#d34e41">1482.1</text><text x="745" y="152" fill="#087968">1352.6</text><text x="995" y="141" fill="#d18a25">1395.5</text></g>
+  <text x="625" y="595" fill="#11201d" font-family="Arial, sans-serif" font-size="21" text-anchor="middle">Indian season</text>
+  <text x="29" y="275" fill="#11201d" font-family="Arial, sans-serif" font-size="21" text-anchor="middle" transform="rotate(-90 29 275)">Average demand</text>
+</svg>
