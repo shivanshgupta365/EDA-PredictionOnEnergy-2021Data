@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demand Intelligence Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-2.35.2.min.js"></script>
+    <style>
+      :root {
+        --ink: #17211e;
+        --muted: #60706a;
+        --paper: #f7f4ee;
+        --panel: rgba(255, 255, 255, 0.82);
+        --line: rgba(23, 33, 30, 0.14);
+        --mint: #12a886;
+        --coral: #f05d4f;
+        --amber: #f2a93b;
+        --blue: #3867d6;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background:
+          linear-gradient(135deg, rgba(18, 168, 134, 0.15), rgba(240, 93, 79, 0.09) 42%, rgba(56, 103, 214, 0.13)),
+          radial-gradient(circle at top left, rgba(242, 169, 59, 0.22), transparent 32%),
+          var(--paper);
+        font-family: "Segoe UI", "Trebuchet MS", sans-serif;
+      }
+
+      .shell {
+        max-width: 1440px;
+        margin: 0 auto;
+        padding: 28px;
+      }
+
+      .hero {
+        padding: 30px;
+        border: 1px solid var(--line);
+        background: linear-gradient(120deg, rgba(255,255,255,.9), rgba(255,255,255,.6));
+        box-shadow: 0 20px 50px rgba(23, 33, 30, 0.1);
+      }
+
+      .hero h1 {
+        margin: 0 0 8px;
+        font-size: 44px;
+        line-height: 1.05;
+      }
+
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 17px;
+      }
+
+      .grid {
+        display: grid;
+        gap: 16px;
+      }
+
+      .metrics {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        margin: 20px 0;
+      }
+
+      .metric,
+      .panel {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        box-shadow: 0 14px 32px rgba(23, 33, 30, 0.07);
+      }
+
+      .metric {
+        padding: 18px;
+      }
+
+      .metric span {
+        display: block;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .metric strong {
+        display: block;
+        margin-top: 7px;
+        font-size: 28px;
+      }
+
+      .metric small {
+        display: block;
+        margin-top: 4px;
+        color: var(--mint);
+      }
+
+      .panel {
+        padding: 18px;
+        min-height: 390px;
+      }
+
+      .two {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .tabs {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin: 18px 0;
+      }
+
+      .tab {
+        border: 1px solid var(--line);
+        background: rgba(255,255,255,.7);
+        color: var(--ink);
+        padding: 10px 14px;
+        cursor: pointer;
+        font-weight: 650;
+      }
+
+      .tab.active {
+        background: var(--ink);
+        color: var(--paper);
+      }
+
+      .section {
+        display: none;
+      }
+
+      .section.active {
+        display: block;
+      }
+
+      .note {
+        border-left: 5px solid var(--amber);
+        background: rgba(255,255,255,.82);
+        padding: 18px 20px;
+        line-height: 1.55;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(255,255,255,.72);
+      }
+
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--line);
+        text-align: left;
+      }
+
+      th {
+        color: var(--muted);
+      }
+
+      @media (max-width: 900px) {
+        .shell {
+          padding: 16px;
+        }
+
+        .metrics,
+        .two {
+          grid-template-columns: 1fr;
+        }
+
+        .hero h1 {
+          font-size: 34px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero">
+        <h1>Demand Intelligence Dashboard</h1>
+        <p>Data quality, demand patterns, machine learning results, lag analysis, and manager-ready findings in one Vercel dashboard.</p>
+      </section>
+
+      <section class="grid metrics">
+        <div class="metric"><span>Rows Analysed</span><strong id="rows">173,304</strong><small>15-minute demand records</small></div>
+        <div class="metric"><span>Missing Timestamps</span><strong id="missing">0</strong><small>clean time grid</small></div>
+        <div class="metric"><span>Regression R2</span><strong id="regR2">0.6977</strong><small>standard model</small></div>
+        <div class="metric"><span>Lag Model R2</span><strong id="lagR2">0.9991</strong><small>best forecasting signal</small></div>
+      </section>
+
+      <nav class="tabs" aria-label="Dashboard sections">
+        <button class="tab active" data-tab="quality">Data Quality</button>
+        <button class="tab" data-tab="patterns">Patterns</button>
+        <button class="tab" data-tab="models">Models</button>
+        <button class="tab" data-tab="lags">Lag Analysis</button>
+        <button class="tab" data-tab="summary">Summary</button>
+      </nav>
+
+      <section id="quality" class="section active">
+        <div class="grid two">
+          <div class="panel"><div id="intervalChart"></div></div>
+          <div class="panel"><div id="nullChart"></div></div>
+        </div>
+        <div class="note" style="margin-top: 16px;">
+          The dataset is clean for time-series work: no null values, no duplicate timestamps, no missing timestamps, and the actual interval is consistently 15 minutes. The only note is that the final day is incomplete.
+        </div>
+      </section>
+
+      <section id="patterns" class="section">
+        <div class="grid two">
+          <div class="panel"><div id="hourChart"></div></div>
+          <div class="panel"><div id="monthChart"></div></div>
+          <div class="panel"><div id="blockChart"></div></div>
+          <div class="panel"><div id="corrChart"></div></div>
+        </div>
+      </section>
+
+      <section id="models" class="section">
+        <div class="grid two">
+          <div class="panel"><div id="confusionChart"></div></div>
+          <div class="panel"><div id="regImportanceChart"></div></div>
+        </div>
+        <div class="panel" style="margin-top: 16px;">
+          <table>
+            <thead><tr><th>Model</th><th>Metric</th><th>Value</th></tr></thead>
+            <tbody id="modelTable"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="lags" class="section">
+        <div class="grid two">
+          <div class="panel"><div id="lagCorrChart"></div></div>
+          <div class="panel"><div id="lagImportanceChart"></div></div>
+        </div>
+        <div class="panel" style="margin-top: 16px;"><div id="lagPredictionChart"></div></div>
+      </section>
+
+      <section id="summary" class="section">
+        <div class="note">
+          The main EDA and modelling work is complete. The data is clean and follows a regular 15-minute interval. Demand changes by block, hour, weekday pattern, season, and especially by recent previous demand. Classification gives about 74.5% accuracy, standard regression gives about 0.70 R2, and the lag-feature model performs best with about 0.999 R2 and MAE around 5.41.
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const layoutBase = {
+        paper_bgcolor: "rgba(0,0,0,0)",
+        plot_bgcolor: "rgba(255,255,255,.38)",
+        font: { family: "Segoe UI, Trebuchet MS, sans-serif", color: "#17211e" },
+        margin: { l: 44, r: 18, t: 56, b: 50 },
+        height: 350
+      };
+
+      function csvRows(text) {
+        const lines = text.trim().split(/\r?\n/);
+        const headers = lines.shift().split(",");
+        return lines.map(line => {
+          const values = line.split(",");
+          return Object.fromEntries(headers.map((h, i) => [h, values[i]]));
+        });
+      }
+
+      async function getJson(path) {
+        const res = await fetch(path);
+        return res.ok ? res.json() : {};
+      }
+
+      async function getCsv(path) {
+        const res = await fetch(path);
+        return res.ok ? csvRows(await res.text()) : [];
+      }
+
+      function bar(div, rows, x, y, title, color = "#12a886") {
+        Plotly.newPlot(div, [{ x: rows.map(r => r[x]), y: rows.map(r => Number(r[y])), type: "bar", marker: { color } }], { ...layoutBase, title }, { responsive: true, displayModeBar: false });
+      }
+
+      function hbar(div, rows, x, y, title, color = "#3867d6") {
+        Plotly.newPlot(div, [{ x: rows.map(r => Number(r[x])), y: rows.map(r => r[y]), type: "bar", orientation: "h", marker: { color } }], { ...layoutBase, title }, { responsive: true, displayModeBar: false });
+      }
+
+      function line(div, rows, x, ySeries, title) {
+        const traces = ySeries.map(series => ({
+          x: rows.map(r => r[x]),
+          y: rows.map(r => Number(r[series.key])),
+          name: series.name,
+          type: "scatter",
+          mode: "lines",
+          line: { width: 2, color: series.color }
+        }));
+        Plotly.newPlot(div, traces, { ...layoutBase, title, height: 420 }, { responsive: true, displayModeBar: false });
+      }
+
+      function activateTabs() {
+        document.querySelectorAll(".tab").forEach(button => {
+          button.addEventListener("click", () => {
+            document.querySelectorAll(".tab").forEach(item => item.classList.remove("active"));
+            document.querySelectorAll(".section").forEach(item => item.classList.remove("active"));
+            button.classList.add("active");
+            document.getElementById(button.dataset.tab).classList.add("active");
+          });
+        });
+      }
+
+      async function boot() {
+        activateTabs();
+        const timestamp = await getJson("timestamp_data_quality_output/timestamp_data_quality_summary.json");
+        const regression = await getJson("regression_output/regression_metrics.json");
+        const lag = await getJson("lag_feature_analysis_output/lag_feature_summary.json");
+        const classification = await getJson("classification_output/classification_metrics.json");
+
+        document.getElementById("rows").textContent = Number(timestamp.rows || 173304).toLocaleString();
+        document.getElementById("missing").textContent = timestamp.missing_timestamp_count_for_15min_grid ?? 0;
+        document.getElementById("regR2").textContent = (regression.model_metrics?.r2 ?? 0.6977).toFixed(4);
+        document.getElementById("lagR2").textContent = (lag.lag_feature_model_metrics?.r2 ?? 0.9991).toFixed(4);
+
+        bar("intervalChart", await getCsv("timestamp_data_quality_output/interval_distribution.csv"), "interval", "count", "Timestamp Interval Distribution", "#12a886");
+        bar("nullChart", await getCsv("timestamp_data_quality_output/null_counts.csv"), "column", "null_count", "Null Count by Column", "#f05d4f");
+        bar("hourChart", await getCsv("bivariate_multivariate_output/demand_by_hour.csv"), "hour", "mean", "Average Demand by Hour", "#3867d6");
+        bar("monthChart", await getCsv("bivariate_multivariate_output/demand_by_month.csv"), "month", "mean", "Average Demand by Month", "#12a886");
+        bar("blockChart", await getCsv("bivariate_multivariate_output/demand_by_block.csv"), "block", "mean", "Average Demand by Block", "#f2a93b");
+        bar("corrChart", await getCsv("bivariate_multivariate_output/bivariate_correlations.csv"), "feature", "pearson_correlation", "Bivariate Correlation with Demand", "#3867d6");
+        hbar("regImportanceChart", await getCsv("regression_output/feature_importance.csv"), "importance_mean", "feature", "Regression Feature Importance", "#f2a93b");
+        hbar("lagCorrChart", await getCsv("lag_feature_analysis_output/lag_correlations.csv"), "correlation_with_demand", "lag_feature", "Lag Correlation with Demand", "#12a886");
+        hbar("lagImportanceChart", (await getCsv("lag_feature_analysis_output/lag_feature_importance.csv")).slice(0, 12), "importance_mean", "feature", "Lag Model Feature Importance", "#3867d6");
+
+        const confusion = await getCsv("classification_output/confusion_matrix.csv");
+        if (confusion.length) {
+          const labels = ["predicted_low", "predicted_medium", "predicted_high"];
+          Plotly.newPlot("confusionChart", [{
+            z: confusion.map(row => labels.map(label => Number(row[label]))),
+            x: labels,
+            y: confusion.map(row => row[""]),
+            type: "heatmap",
+            colorscale: "YlGnBu"
+          }], { ...layoutBase, title: "Classification Confusion Matrix" }, { responsive: true, displayModeBar: false });
+        }
+
+        const lagPredictions = await getCsv("lag_feature_analysis_output/lag_sample_predictions.csv");
+        if (lagPredictions.length) {
+          line("lagPredictionChart", lagPredictions.slice(0, 300), "datetime", [
+            { key: "actual_demand", name: "Actual", color: "#17211e" },
+            { key: "lag_model_prediction", name: "Lag prediction", color: "#12a886" }
+          ], "Actual vs Lag Prediction Sample");
+        }
+
+        const modelRows = [
+          ["Classification", "Accuracy", `${((classification.accuracy || 0) * 100).toFixed(2)}%`],
+          ["Classification", "Macro F1", (classification.macro_f1 || 0).toFixed(4)],
+          ["Regression", "R2", (regression.model_metrics?.r2 || 0).toFixed(4)],
+          ["Regression", "MAPE", `${(regression.model_metrics?.mape_pct || 0).toFixed(2)}%`],
+          ["Lag Forecasting", "R2", (lag.lag_feature_model_metrics?.r2 || 0).toFixed(4)],
+          ["Lag Forecasting", "MAE", (lag.lag_feature_model_metrics?.mae || 0).toFixed(2)]
+        ];
+        document.getElementById("modelTable").innerHTML = modelRows.map(row => `<tr><td>${row[0]}</td><td>${row[1]}</td><td>${row[2]}</td></tr>`).join("");
+      }
+
+      boot();
+    </script>
+  </body>
+</html>

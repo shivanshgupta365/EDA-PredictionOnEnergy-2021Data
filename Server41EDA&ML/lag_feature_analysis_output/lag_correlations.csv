@@ -1,0 +1,13 @@
+lag_feature,correlation_with_demand
+lag_15min,0.997388
+lag_30min,0.991162
+rolling_mean_1hour,0.987251
+lag_1hour,0.968222
+lag_1day,0.918889
+lag_1week,0.909271
+lag_2hour,0.890921
+rolling_mean_6hour,0.816831
+rolling_mean_1day,0.71447
+lag_6hour,0.469905
+lag_12hour,0.259857
+rolling_std_1day,0.145019

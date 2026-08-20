@@ -1,0 +1,11 @@
+feature,permutation_importance_mean,permutation_importance_std
+block,126.342555,1.418568
+day_of_year,87.305953,1.318008
+day_of_week,19.500313,0.292774
+hour,1.430122,0.218801
+is_weekend,0.495318,0.148742
+year,-0.0,0.0
+minute,-0.024941,0.014269
+quarter,-0.120442,0.010056
+month,-0.250445,0.026833
+day,-3.359723,0.166859

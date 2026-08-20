@@ -1,0 +1,36 @@
+{
+  "dataset": "demo.xslx",
+  "task": "Predict numeric demand",
+  "rows_used": 173304,
+  "train_rows": 138643,
+  "test_rows": 34661,
+  "split_type": "chronological 80/20 split",
+  "model": "HistGradientBoostingRegressor",
+  "model_metrics": {
+    "mae": 112.63809,
+    "rmse": 143.265044,
+    "r2": 0.697744,
+    "mape_pct": 7.990385
+  },
+  "baseline_mean_model_metrics": {
+    "mae": 239.630661,
+    "rmse": 287.514174,
+    "r2": -0.217342,
+    "mape_pct": 16.424461
+  },
+  "residual_summary": {
+    "mean_residual": 8.18061,
+    "median_residual": 10.600644,
+    "std_residual": 143.033355,
+    "min_residual": -607.51819,
+    "max_residual": 508.110573
+  },
+  "train_date_range": {
+    "start": "2021-01-01 00:00:00",
+    "end": "2024-12-15 04:30:00"
+  },
+  "test_date_range": {
+    "start": "2024-12-15 04:45:00",
+    "end": "2025-12-11 05:45:00"
+  }
+}

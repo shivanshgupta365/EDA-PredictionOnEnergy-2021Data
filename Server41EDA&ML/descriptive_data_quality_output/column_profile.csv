@@ -1,0 +1,7 @@
+column,dtype,non_null_count,missing_count,missing_pct,unique_count
+datetime,str,173304,0,0.0,173304
+date,str,173304,0,0.0,1806
+time,str,173304,0,0.0,96
+block,int64,173304,0,0.0,96
+demand,float64,173304,0,0.0,110170
+entrydatetime,str,173304,0,0.0,15513

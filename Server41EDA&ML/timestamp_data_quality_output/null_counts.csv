@@ -1,0 +1,11 @@
+column,null_count
+datetime,0
+date,0
+time,0
+block,0
+demand,0
+entrydatetime,0
+parsed_datetime,0
+parsed_date,0
+parsed_time,0
+demand_numeric,0
