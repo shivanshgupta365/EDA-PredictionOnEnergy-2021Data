@@ -15,6 +15,8 @@
 2. The initial hidden-tab chart rendering produced blank Plotly panels. Active views are now measurable at boot, and feature-importance views use resilient ranked bars while preserving chart-level explanations.
 3. The final capture shows the Streamlit reference's core content model—left navigation, notebook heading, KPI row, data/schema tables, and analytical charts—at higher contrast and a more legible public-web scale.
 4. The Patterns view now renders its previously missing Day of Week, Indian Season, and Season × Demand analyses. The correlation chart uses a signed zero-centered rendering so it remains visible even when a chart library cannot determine a hidden panel's dimensions.
+5. The manager-readiness review identified that weekday and Indian-season panels were ranked lists rather than true graphs. They are now interactive Plotly bar charts with ordered categories, axes, and value hover readouts. Season means are weighted by the source record count.
+6. The Data Quality reference was implemented from the source output: an Incomplete Days table reports `2025-12-11`, 24 records, expected 96, and the truthful end-time context. The Data Lens now follows the active pointer with collision handling instead of covering an unrelated corner of the page.
 
 ## Required fidelity surfaces
 
@@ -30,6 +32,7 @@
 - Plotly graphs provide point-level hover values.
 - The custom Data Lens hover system was verified on the Data Preview header: it displays a contextual explanation; metric cards, headers, chart regions, and table cells receive contextual help.
 - The bottom-left Data Lens tab and its persisted on/off control were verified in a real browser. With the control off, no hover panel appears; with it on, the contextual panel appears again.
+- The new Data Quality table, timestamp chart, zero-null annotation, real weekday/season bar charts, pointer-following Data Lens, and timestamp x-axes were verified in a fresh Playwright browser session.
 - Browser console checked after the final model view: no errors.
 
 ## Focused-region comparison
